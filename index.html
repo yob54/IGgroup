@@ -27,7 +27,16 @@
         </div>
 
        <div class="login-container">
-        <h2>Login</h2>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <h2>Login</h2>
     <form id="loginForm">
         <input type="text" id="username" placeholder="Username" required>
         <input type="password" id="password" placeholder="Password" required>
@@ -40,38 +49,46 @@
 
     <script>
         // ✅ Initialize Firebase Correctly
-        const firebaseConfig = {
-  apiKey: "AIzaSyA539oRhSFY_3gAZgRZ1_ec6yZI_6dcuWw",
-  authDomain: "login-system-4905a.firebaseapp.com",
-  projectId: "login-system-4905a",
-  storageBucket: "login-system-4905a.firebasestorage.app",
-  messagingSenderId: "647558155220",
-  appId: "1:647558155220:web:d99b742f0d171a6015a441"
-};
-
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        // ✅ Ensure JavaScript Runs AFTER Page Load
         document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("loginForm").addEventListener("submit", function(event) {
-                event.preventDefault();
+            const firebaseConfig = {
+                apiKey: "AIzaSyA539oRhSFY_3gAZgRZ1_ec6yZI_6dcuWw",
+                authDomain: "login-system-4905a.firebaseapp.com",
+                projectId: "login-system-4905a",
+                storageBucket: "login-system-4905a.firebasestorage.app",
+                messagingSenderId: "647558155220",
+                appId: "1:647558155220:web:d99b742f0d171a6015a441"
+            };
 
-                const username = document.getElementById("username").value;
-                const password = document.getElementById("password").value;
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
 
-                // ✅ Store Data in Firestore (Correctly!)
-                db.collection("users").add({
-                    username: username,
-                    password: password
-                }).then(() => {
-                    alert("Login data saved successfully!");
-                }).catch((error) => {
-                    console.error("Error saving data: ", error);
+            // ✅ Ensure login form exists before attaching event listener
+            const loginForm = document.getElementById("loginForm");
+            if (loginForm) {
+                loginForm.addEventListener("submit", function(event) {
+                    event.preventDefault();
+
+                    const username = document.getElementById("username").value;
+                    const password = document.getElementById("password").value;
+
+                    // ✅ Store Data in Firestore (Correctly!)
+                    db.collection("users").add({
+                        username: username,
+                        password: password
+                    }).then(() => {
+                        alert("Login data saved successfully!");
+                    }).catch((error) => {
+                        console.error("Error saving data: ", error);
+                    });
                 });
-            });
+            } else {
+                console.error("Login form not found!");
+            }
         });
     </script>
+</body>
+</html>
+
 </body>
 
        
