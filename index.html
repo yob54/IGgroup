@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Meme Group</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <button class="back-btn"><i class="fas fa-arrow-left"><b>←</b></i></button>
+        <p class="join-group">Join Group</p>
+        <img src="ig.png" alt="Instagram" class="insta-logo">
+    </div>
+
+    <!-- Group Info -->
+    <div class="group-container">
+
+        <div class="profile">
+        <img src="logo.png" alt="Group Photo" class="group-photo">
+        <h2>Terrorist Niggas</h2>
+        </div>
+
+       <div class="input">
+        <div class="input-container">
+            <input type="text" placeholder="Epha" class="input-field">
+        </div>
+        
+        <div class="input-container">
+            <input type="password" placeholder="Password" class="input-field" id="password">
+            <i class="fas fa-eye" id="togglePassword"></i>
+        </div>
+       
+        <button class="login-btn">Join</button>
+    </div>
+    </div>
+    <!-- Warning Section -->
+    <div class="warning">
+        <i class="fas fa-exclamation-triangle danger-icon"></i>
+        <p>⚠️Please join the group within the given time! <span id="countdown">60</span></p>
+    </div>
+    <div class="meta">
+    <p>
+     @Meta comapny
+    </p>
+    </div>
+
+    <!-- Countdown Timer -->
+    <script>
+        let timeLeft = 60;
+        const countdownElement = document.getElementById("countdown");
+
+        function updateCountdown() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                countdownElement.textContent = timeLeft;
+            }
+        }
+        setInterval(updateCountdown, 1000);
+
+        // Password visibility toggle
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordField = document.getElementById("password");
+
+        togglePassword.addEventListener("click", function () {
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                togglePassword.classList.remove("fa-eye");
+                togglePassword.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                togglePassword.classList.remove("fa-eye-slash");
+                togglePassword.classList.add("fa-eye");
+            }
+        });
+    </script>
+
+</body>
+
+
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #FAFAFA;
+    color: #262626;
+}
+
+/* Top Bar */
+.top-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    padding: 5px 15px;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    height: 40px; /* Shortened Height */
+}
+
+/* Back Button */
+
+
+.back-btn  {
+    border:none;
+    background-color:transparent;
+    color: black; /* Back Icon is now Black */
+    font-size: 24px;
+}
+
+/* Join Group Text */
+.join-group {
+    color: #262626;
+    font-size: 24px;
+    font-family: arial;
+}
+
+/* Instagram Logo */
+.insta-logo {
+    margin-right:30px;
+    width: 30px;
+    height: 30px;
+}
+
+/* Group Info */
+.group-container {
+    margin-top: 60px;
+}
+
+.group-photo {
+    margin-top:40px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid #DDDDDD;
+}
+
+/* Input Fields */
+.input{
+   margin-top:60px;
+}
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 60%;
+    margin: 10px auto;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.input-container i {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #888888;
+}
+
+/* Login Button */
+.login-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #3897f0;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Warning Message */
+.warning {
+
+    font-size: 15px;
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.meta{
+margin-top:180px;
+}
+
+</style>
+</html>
