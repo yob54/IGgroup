@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terrorist Niggas</title>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -36,6 +37,8 @@
     <!-- Firebase & Firestore Scripts -->
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
 
     <script>
         // Initialize Firebase
@@ -47,6 +50,9 @@
   messagingSenderId: "647558155220",
   appId: "1:647558155220:web:d99b742f0d171a6015a441"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
